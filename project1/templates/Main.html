@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Welcome to the main page!
+{% endblock %}
+
+{% block body %}
+  <h3>Please Login to Your Account</h3>
+
+    <form action="{{ url_for('login') }}" method="post">
+
+      <input type="text" placeholder="Username" name="username">
+      <input type="password" placeholder="Password" name="password">
+
+      <div class="form-group">
+        <button class="btn btn-primary">Submit</button>
+      </div>
+
+    </form>
+
+    <h3>Please Create an Account</h3>
+
+      <form action="{{ url_for('create') }}" method="post">
+
+        <input type="text" placeholder="Username" name="username">
+        <input type="password" placeholder="Password" name="password">
+
+        <div class="form-group">
+          <button class="btn btn-primary">Submit</button>
+        </div>
+
+      </form>
+
+
+
+  <p>{{ message }}</p>
+
+{% endblock %}

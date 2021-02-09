@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Success!
+{% endblock %}
+
+{% block body %}
+<h1>Please Create an Account</h1>
+
+  <form action="{{ url_for('create') }}" method="post">
+
+    <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+    <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+
+    <div class="form-group">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+
+  </form>
+
+<p>{{ message }}</p>
+{% endblock %}

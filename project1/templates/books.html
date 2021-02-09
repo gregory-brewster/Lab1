@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Success!
+{% endblock %}
+
+{% block body %}
+<h1>Search for Books</h1>
+
+  <form action="{{ url_for('books') }}" method="post">
+
+    <input type="text" placeholder="Search for Book(s)" name="input" value="{{ request.form.username }}">
+
+    <div class="form-group">
+      <button class="btn btn-primary">Search</button>
+    </div>
+
+  </form>
+
+  {% for book in results %}
+    <p>test</p>
+  {% endfor %}
+
+<p>{{ message }}</p>
+{% endblock %}
