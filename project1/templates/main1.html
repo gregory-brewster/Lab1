@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  <h5>{{ message1 }}</h5>
+{% endblock %}
+
+
+{% block body %}
+<p></p>
+
+  {{ message3 }}
+  <form action="{{ url_for('books') }}" method="post">
+    <div class="form-group">
+      <button class="btn btn-info">Search Books</button>
+    </div>
+  </form>
+
+  {{ message2 }}
+  <form action="{{ url_for('logout') }}" method="post">
+    <div class="form-group">
+      <button class="btn btn-dark">Logout</button>
+    </div>
+  </form>
+
+{% endblock %}

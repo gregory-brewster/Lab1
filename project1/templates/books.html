@@ -1,25 +1,39 @@
 {% extends "layout.html" %}
 
-{% block title %}
-  Success!
+{% block heading %}
+  <h5>{{ message }}</h5>
 {% endblock %}
 
+
 {% block body %}
-<h1>Search for Books</h1>
+<br><h3>Search for Books</h3>
 
-  <form action="{{ url_for('books') }}" method="post">
 
-    <input type="text" placeholder="Search for Book(s)" name="input" value="{{ request.form.username }}">
 
+<form action="{{ url_for('books') }}" method="post">
+
+  <input type="text" placeholder="Search for Book(s)" name="input"> The search is case sensative.</input>
+
+  <div class="form-group">
+    <button class="btn btn-info" type="submit">Search</button>
+  </div>
+</form>
+
+    <p>{{ message2 }}</p>
+
+<form action="{{ url_for('books') }}" method="post">
+  <div class="form-group">
+    <select class="form-control" name="book_id">
+      {% for book in results %}
+
+          <option value="{{ book.id }}">{{ book.title }} | {{ book.author }} | Year: {{ book.year }} | isbn: {{ book.isbn }}</option>
+      {% endfor %}
+    </select>
+  </div>
     <div class="form-group">
-      <button class="btn btn-primary">Search</button>
+        <button class="btn btn-info">View Book</button>
     </div>
-
   </form>
 
-  {% for book in results %}
-    <p>test</p>
-  {% endfor %}
-
-<p>{{ message }}</p>
+<a href = '/logout'>click here to log out</a>
 {% endblock %}

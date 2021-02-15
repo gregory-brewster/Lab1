@@ -23,11 +23,6 @@ def main():
     db.session.commit()
 
 
-
-    user = Username_Passwords(username="Greg", password="pass")
-    db.session.add(user)
-    db.session.commit()
-
 if __name__ == "__main__":
     with app.app_context():
         main()

@@ -11,23 +11,29 @@
     </head>
     <body>
 
-      <div class = "txtbox1">
-        <h2>Good Reviews</h2>
-        {% block heading %}
-
-        {% endblock %}
-      </div>
-
-
-        <div class="container">
-        <div class = "txtbox3">
-          {% block body1 %}
+        <div class = "txtbox1">
+          <h2>Good Reviews</h2>
+          {% block heading %}
 
           {% endblock %}
         </div>
 
+        <div class="container">
 
-        {% block body %}
+        <div class = "txtbox2">
+          <p>Welcome to Good Reviews where you can find your next book. You can browse
+          through thousands of books while reading about what others thought. You can
+          even rate and write your own reviews about books you've read. All you have
+          to do is log in or create an account if you don't already have one. Enjoy!</p>
+          {% block body1 %}
+
+          {% endblock %}
+        </div><br>
+
+        {% block body2 %}
+
+
+
         {% endblock %}
 
     </body>

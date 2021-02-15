@@ -1,11 +1,29 @@
-{% extends "layout.html" %}
+{% extends "layout2.html" %}
 
 {% block title %}
-  Success!
+  Welcome to the login page!
 {% endblock %}
 
-{% block body %}
-    <h1>Success</h1>
+{% block heading %}
 
-    You have successfully created your account.
+{% endblock %}
+
+
+{% block body2 %}
+
+  <p1>Please Login to Your Account</p1>
+
+    <form action="{{ url_for('login') }}" method="post">
+
+      <input type="text" placeholder="Username" name="username">
+      <input type="password" placeholder="Password" name="password">
+
+      <div class="form-group">
+        <button class="btn btn-info">Submit</button>
+      </div>
+
+    </form>
+
+<p3>{{ message }}</p3><br>
+<a href = 'create'>create account</a>
 {% endblock %}

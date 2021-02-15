@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block body %}
-<h1>Please Create an Account</h1>
+<h3>Please Create an Account</h3>
 
   <form action="{{ url_for('create') }}" method="post">
 
-    <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
-    <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+    <input type="text" placeholder="Username" name="username">
+    <input type="password" placeholder="Password" name="password">
 
     <div class="form-group">
       <button class="btn btn-primary">Submit</button>
@@ -19,4 +19,8 @@
   </form>
 
 <p>{{ message }}</p>
+
+<a href = '/'>click here to log in</a>
+
+
 {% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  <h5>{{ message }}</h5>
+{% endblock %}
+
+{% block body1 %}
+
+  <br><h>Book Title: {{ book.title }}</h>
+  <p>Author: {{ book.author }}</p>
+  <p>Year of Publication: {{ book.year }}</p>
+  <p>Isbn: {{ book.isbn }}</p><br>
+
+  <p>{{ error }}</p>
+  <p>Google's Average Rating: {{ avg_rating }}</p>
+  <p>Google's Rating Count: {{ rating_count }}</p>
+
+{% endblock %}
+
+{% block body %}
+  <p></p><br><br>
+  <h>What'd You Think? Write A Review</h><br>
+
+  <h_2>{{ message2 }}</h_2>
+  <form action="{{ url_for('book') }}" method="post">
+    <textarea name = "review" rows="4" cols="40" placeholder="Enter Your Book Review"></textarea><br><br>
+
+    <h>Book Rating</h><br>
+
+    <input type="radio" name="rating" value="1">1</input>
+    <input type="radio" name="rating" value="2">2</input>
+    <input type="radio" name="rating" value="3">3</input>
+    <input type="radio" name="rating" value="4">4</input>
+    <input type="radio" name="rating" value="5">5</input><br>
+
+    <button class="btn btn-info" type="submit">Add Review</button><br><br><br>
+
+  </form>
+
+
+  <form action="{{ url_for('books') }}" method="post">
+
+    <div class="form-group">
+      <button class="btn btn-secondary" type="submit">Back to Search</button>
+    </div>
+  </form>
+
+  <a href = '/logout'>click here to log out</a><br><br><br>
+
+  <h3>Reviews:</h3>
+  <table>
+
+
+    {% for review in reviews%}
+      <tr>
+        <td>
+          <textarea rows="4" cols="40">{{ review }}</textarea>
+        </td>
+      </tr>
+    {% endfor %}
+
+{% endblock %}

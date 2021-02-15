@@ -8,5 +8,20 @@
 {% block body %}
     <h1>Error</h1>
 
-    {{ message }}
+    <p>review: {{ review }}</p>
+    <p>rating: {{ rating }}</p>
+    {{ message }}<db>
+
+
+    <% var i;
+    for i in values{ %>
+        <p>loop</p>
+    }%>
+
+
+    <form action="{{ url_for('login') }}" method="post">
+      <div class="form-group">
+        <button class="btn btn-primary">Login</button>
+      </div>
+    </form>
 {% endblock %}

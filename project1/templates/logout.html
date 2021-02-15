@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  The Main Page
+{% endblock %}
+
+{% block body %}
+<h1> You've been successfully logged out.</h1>
+<p>Click below to log back in.</p>
+
+  <form action="{{ url_for('login') }}" method="post">
+    <div class="form-group">
+      <button class="btn btn-primary">Login</button>
+    </div>
+  </form>
+
+{% endblock %}
