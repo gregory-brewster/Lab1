@@ -137,7 +137,7 @@ def books():
             #Grab API data about book
             res = requests.get("https://www.googleapis.com/books/v1/volumes", params={"q": f"isbn:{book.isbn}"})
             data = res.json()
-            session['data'] = data
+
 
             #Returns the average and amount of ratings for the user inputted book
             try:
@@ -179,9 +179,11 @@ def book():
 
 #API DATA
         #Grab API data about book
-        data = session['data']
 
         #Returns the average and amount of ratings for the user inputted book
+        res = requests.get("https://www.googleapis.com/books/v1/volumes", params={"q": f"isbn:{book.isbn}"})
+        data = res.json()
+
         try:
             avg_rating = data["items"][0]["volumeInfo"]["averageRating"]
             rating_count = data["items"][0]["volumeInfo"]["ratingsCount"]
