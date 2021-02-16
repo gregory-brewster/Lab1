@@ -177,9 +177,7 @@ def book():
         book_id = book.id
         review_username = None
 
-#API DATA
         #Grab API data about book
-
         #Returns the average and amount of ratings for the user inputted book
         res = requests.get("https://www.googleapis.com/books/v1/volumes", params={"q": f"isbn:{book.isbn}"})
         data = res.json()
@@ -201,17 +199,20 @@ def book():
             session[f"{book.id}_rating"] = []
 
 
+
+        book_id = book.id
         #will return the username of a user who is logged in and has already written a review
-        review_username = db.execute(f"SELECT INITCAP(username) FROM reviews WHERE username = :username",
-                                {"username": username}).fetchone()
+        review_username = db.execute(f"SELECT INITCAP(username) FROM reviews WHERE username = :username AND book_id = :book_id",
+                                {"username": username, "book_id": book_id}).fetchone()
 
         #This makes both usernames into strings so that they look like ('_',)
-        username_str = str(f"('{username}',)")
-        review_username_str = str(review_username)
+        #username_str = str(f"('{username}',)")
+        #review_username_str = str(review_username)
 
         #This if statements is only entered if the user has not already written a review for the inputted book
-        if username_str != review_username_str:
+        if review_username == None:
 
+            #return render_template("error.html", message=review_username)
             review = request.form.get("review")
             rating = request.form.get("rating")
 
@@ -219,10 +220,12 @@ def book():
                     {"book_id": book_id, "username": username, "review": review, "rating": rating})
             db.commit()
 
-            combination = db.execute(f"SELECT CONCAT(username, ': ', review, '  - ', rating, ' stars') FROM reviews WHERE username = :username",
-                                    {"username": username}).fetchone()
+            combination = db.execute(f"SELECT CONCAT(username, ': ', review, '  - ', rating, ' stars') FROM reviews WHERE username = :username AND book_id = :book_id",
+                                    {"username": username, "book_id": book_id}).fetchone()
 
-            session[f"{book.id}_reviews"].append(combination[0])
+            #return render_template("error.html", message=combination)
+
+            session[f"{book_id}_reviews"].append(combination[0])
 
 
             return render_template("book.html", book=book, message=f"Hello, {username}", reviews=session[f"{book.id}_reviews"], avg_rating=avg_rating, rating_count=rating_count, error=error)
